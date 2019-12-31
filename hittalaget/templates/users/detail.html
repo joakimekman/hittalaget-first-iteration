@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}{{ object }}{% endblock title %}
+{% block content %}
+  <h1>{{ object }}</h1>
+  <ul>
+    <li><strong>förnamn:</strong> {{ object.first_name }}</li>
+    <li><strong>efternamn:</strong> {{ object.last_name }}</li>
+    <li><strong>email:</strong> {{ object.email }}</li>
+    <li><strong>född:</strong> {{ object.birthday|date }}</li>
+    <li><strong>stad:</strong> {{ object.city }}</li>
+  </ul>
+
+  {% if request.user == object %}
+    <hr>
+    <ul>
+      <li><a href="{% url 'user:password_change' %}">byt lösenord</a></li>
+      <li><a href="{% url 'user:update_account' %}">inställningar</a></li>
+      <li><a href="{% url 'user:delete_account' %}">ta bort konto</a></li>
+    </ul>
+  {% endif %}
+{% endblock content %}

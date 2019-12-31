@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Inställningar{% endblock title %}
+{% block content %}
+  <h1>Inställningar</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <p>{{ form.username.label }}</p>
+    <p>{{ form.username.errors }}</p>
+    <p>{{ form.username }}</p>
+
+    <p>{{ form.first_name.label }}</p>
+    <p>{{ form.first_name.errors }}</p>
+    <p>{{ form.first_name }}</p>
+
+    <p>{{ form.last_name.label }}</p>
+    <p>{{ form.last_name.errors }}</p>
+    <p>{{ form.last_name }}</p>
+
+    <p>{{ form.email.label }}</p>
+    <p>{{ form.email.errors }}</p>
+    <p>{{ form.email }}</p>
+
+    <p>{{ form.birthday.label }}</p>
+    <p>{{ form.birthday.errors }}</p>
+    <p>{{ form.birthday }}</p>
+
+    <p>{{ form.city.label }}</p>
+    <p>{{ form.city.errors }}</p>
+    <p>{{ form.city }}</p>
+
+    <input type="submit" value="spara">
+  </form>
+{% endblock content %}
