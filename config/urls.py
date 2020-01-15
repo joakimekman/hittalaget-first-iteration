@@ -14,6 +14,8 @@ urlpatterns = [
     path('about/', TemplateView.as_view(template_name="pages/about.html"), name="about"),
     path('contact/', TemplateView.as_view(template_name="pages/contact.html"), name="contact"),
 
+    path('spelare/', include('hittalaget.players.urls', namespace="player")),
+
     path('reset-password/', PasswordResetView.as_view(), name="password_reset"),
     path('reset-password/email-sent/', PasswordResetDoneView.as_view(), name="password_reset_done"),
     path('reset-password/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name="password_reset_confirm"),

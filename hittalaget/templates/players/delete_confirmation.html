@@ -1,0 +1,8 @@
+<h1>Ta bort profil</h1>
+<p>Innan du tar bort din profil var medveten om att profilen kommer att raderas helt och kan inte återställas.</p>
+<p>Om du bara vill bli borttagen från marknadsplatsen, så rekommenderar vi att ändra din tillgänglighet till upptagen.</p>
+<p>Vill du fortfarande ta bort profilen?</p>
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Ja">
+</form>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}skapa profil{% endblock title %}
+{% block content %}
+    <h1>Skapa profile</h1>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <p>{{ form.positions.label }}</p>
+        <p>{{ form.positions.errors }}</p>
+        <p>{{ form.positions }}</p>
+
+        <p>{{ form.foot.label }}</p>
+        <p>{{ form.foot.errors }}</p>
+        <p>{{ form.foot }}</p>
+
+        <p>{{ form.experience.label }}</p>
+        <p>{{ form.experience.errors }}</p>
+        <p>{{ form.experience }}</p>
+
+        <p>{{ form.special_ability.label }}</p>
+        <p>{{ form.special_ability.errors }}</p>
+        <p>{{ form.special_ability }}</p>
+
+        <p>Finns det någon förmåga som du är extra bra på men som inte finns med? Tipsa oss <a href="{% url 'contact' %}">här</a>.</p>
+
+        <input type="submit" value="skapa profil">
+    </form>
+{% endblock content %}
+  
+  

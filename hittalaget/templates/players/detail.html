@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}spelarprofil{% endblock title %}
+{% block content %}
+    <h1>Spelarprofil</h1>
+    <hr>
+    <p><strong>user:</strong> <a href="{% url 'user:detail' username=object.user %}">{{ object.user }}</a></p>
+    <p><strong>sport:</strong> {{ object.sport }}</p>
+    <p><strong>positioner:</strong> {{ object.positions|lower }}</p>
+    <p><strong>bästa fot:</strong> {{ object.foot }}</p>
+    <p><strong>bästa erfarenhet:</strong> {{ object.experience }}</p>
+    <p><strong>spetsegenskap:</strong> {{ object.special_ability }}</p>
+
+    {% if user == object.user %}
+        <form method="POST" action="{% url 'player:update_status' sport=object.sport %}">
+            {% csrf_token %}
+            <p><strong>status:</strong> <input type="submit" value="{{ status }}"></p>
+        </form>
+    {% else %}
+        <p><strong>status:</strong> {{ status }}</p>
+    {% endif %}
+
+    {% if user == object.user %}
+        <a href="{% url 'player:update' sport=object.sport %}">uppdatera</a> |
+        <a href="{% url 'player:delete' sport=object.sport %}">ta bort</a>
+    {% endif %}
+
+    <h2>Historik</h2>
+
+    {% if object.history_entries %}
+        <table>
+            <tr>
+                <td>Lag</td>
+                <td>Började</td>
+                <td>Slutade</td>
+                <td></td>
+            </tr>
+        {% for entry in object.history_entries.all %}
+            <tr>
+                <td>{{ entry.team_name }}</td>
+                <td>{{ entry.start_year }}</td>
+                <td>{{ entry.end_year }}</td>
+                {% if user == object.user %}
+                    <td><a href="{% url 'player:update_history' sport=object.sport id=entry.id %}">ändra</a></td>
+                    <td><a href="{% url 'player:delete_history' sport=object.sport id=entry.id %}">ta bort</a></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+    
+    {% if user == object.user  %}
+        <a href="{% url 'player:create_history' sport=object.sport %}">lägg till historik</a>
+    {% endif %}
+{% endblock content %}
+
+

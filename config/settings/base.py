@@ -27,9 +27,11 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'django_extensions',
     'debug_toolbar',
+    "multiselectfield",
 ]
 LOCAL_APPS = [
     'hittalaget.users.apps.UsersConfig',
+    'hittalaget.players.apps.PlayersConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
