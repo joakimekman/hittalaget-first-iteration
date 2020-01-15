@@ -55,6 +55,17 @@ class UserDetailView(DetailView):
             return super().dispatch(request, *args, **kwargs)
         else:
             raise Http404()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.get_object()
+        profiles = ["football_player"]
+        user_profiles = []
+        for profile in profiles:
+            if hasattr(user, profile):
+                user_profiles.append(getattr(user, profile))
+        context['profiles'] = user_profiles
+        return context
 
     def get_object(self, queryset=None):
         """ Prevent duplicate queries when retrieving object in other methods. """

@@ -10,6 +10,24 @@
     <li><strong>stad:</strong> {{ object.city }}</li>
   </ul>
 
+  <!-- Render player profiles here -->
+  <h2>Spelarprofiler</h2>
+  {% if profiles %}
+    <ul>
+      {% for profile in profiles %}
+        <li>
+          <a href="{% url 'player:detail' sport=profile.sport username=profile.username %}">
+            {{ profile.sport }}
+          <a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <i>{{ object }} har inga profiler.</i>
+  {% endif %}
+
+
+
   {% if request.user == object %}
     <hr>
     <ul>

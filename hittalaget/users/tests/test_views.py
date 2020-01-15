@@ -95,9 +95,9 @@ class DetailViewTest(TestCase):
     response = self.client.get(reverse('user:detail', kwargs={"username": inactive_user}))
     self.assertEqual(response.status_code, 404)  
 
-  def test_GET_non_existent_user(self):
+  def test_GET_invalid_user(self):
     """ Ensures a 404 is raised when requesting to view the detail page
-    of a non existent user. """
+    of an invalid user. """
     response = self.client.get(reverse('user:detail', kwargs={"username": "sdf"}))
     self.assertEqual(response.status_code, 404)
 
