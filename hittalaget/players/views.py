@@ -120,10 +120,13 @@ class PlayerDetailView(DetailView):
         models = {
             "fotboll": FootballPlayer,
         }
-
+        
         try:
             if not hasattr(self, "object"):
-                self.object = get_object_or_404(models[sport], username=username)
+                self.object = get_object_or_404(
+                    models[sport].objects.select_related('user'),
+                    username=username
+                )
         except KeyError:
             raise Http404()
         return self.object
