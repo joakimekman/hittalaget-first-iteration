@@ -71,7 +71,10 @@ class UserDetailView(DetailView):
         """ Prevent duplicate queries when retrieving object in other methods. """
         if not hasattr(self, "object"):
             username = self.kwargs["username"]
-            user = get_object_or_404(User, username=username)
+            user = get_object_or_404(
+                User.objects.select_related('city', 'football_player'),
+                username=username
+            )
             self.object = user
         return self.object
 
