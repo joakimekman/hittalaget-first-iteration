@@ -1,0 +1,8 @@
+<h1>TA BORT LAG</h1>
+<p>Innan du tar bort ditt lag var medveten om att laget kommer att raderas helt och kan inte återställas.</p>
+<p>Vill du fortfarande ta bort laget?</p>
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Ja">
+</form>
+<a href="{% url 'team:detail' sport=object.sport team_id=object.team_id slug=team.slug %}">gå till lagprofilen</a>

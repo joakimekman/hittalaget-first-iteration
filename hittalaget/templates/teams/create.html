@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}skapa lag{% endblock title %}
+{% block content %}
+    <h1>SKAPA LAG</h1>
+
+    {% if form.errors %}
+        <p>{{ form.errors }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <p>{{ form.sport.label }}</p>
+        <p>{{ form.sport.errors }}</p>
+        <p>{{ form.sport }}</p>
+
+        <p>{{ form.name.label }}</p>
+        <p>{{ form.name.errors }}</p>
+        <p>{{ form.name }}</p>
+
+        <p>{{ form.city.label }}</p>
+        <p>{{ form.city.errors }}</p>
+        <p>{{ form.city }}</p>
+
+        <p>{{ form.home.label }}</p>
+        <p>{{ form.home.errors }}</p>
+        <p>{{ form.home }}</p>
+
+        <p>{{ form.founded.label }}</p>
+        <p>{{ form.founded.errors }}</p>
+        <p>{{ form.founded }}</p>
+
+        <p>{{ form.level.label }}</p>
+        <p>{{ form.level.errors }}</p>
+        <p>{{ form.level }}</p>
+
+        <p>{{ form.website.label }}</p>
+        <p>{{ form.website.help_text }}</p>
+        <p>{{ form.webiste.errors }}</p>
+        <p>{{ form.website }}</p>
+
+        <input type="submit" value="skapa lag">
+    </form>
+{% endblock content %}
+  
+  

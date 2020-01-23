@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}detail{% endblock title %}
+{% block content %}
+    <h1>
+        {{ object.name }}
+        <span>{% if object.is_verified %}Verifierad{% endif %}</span>
+    </h1>
+    <h2>{{ object.sport }}</h2>
+    <hr>
+    <p><strong>Moderator:</strong> <a href="{% url 'user:detail' username=object.user.username %}">{{ object.user }}</a></p>
+    <p><strong>Stad:</strong> {{ object.city }}</p>
+    <p><strong>Hemmaplan:</strong> {{ object.home }}</p>
+    <p><strong>Grundades:</strong> {{ object.founded }}</p>
+    <p><strong>Liga:</strong> {{ object.level }}</p>
+    <p><strong>Hemsida:</strong> <a href="{{ object.website }}" target="_blank">{{ object.website }}</a></p>
+    {% if user == object.user %}
+        <form method="POST" action="{% url 'team:update_status' sport=object.sport %}">
+            {% csrf_token %}
+            <p><strong>Söker spelare:</strong> <input type="submit" value="{{ status }}"></p>
+        </form>
+    {% else %}
+        <p><strong>Söker spelare:</strong> {{ status }}</p>
+    {% endif %}
+
+    {% if object.user == user %}
+        <hr>
+        <p><a href="{% url 'team:update' sport=object.sport %}">Uppdatera</a></p>
+        <p><a href="{% url 'team:delete' sport=object.sport %}">Ta bort lag</a></p>
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}spelarinställningar{% endblock title %}
+{% block content %}
+
+    {% if form.errors %}
+        <p>{{ form.errors }}</p>
+    {% endif %}
+
+    <h1>UPPDATERA LAG</h1>
+    <form method="POST">
+        {% csrf_token %}
+
+        <p>{{ form.city.label }}</p>
+        <p>{{ form.city.errors }}</p>
+        <p>{{ form.city }}</p>
+
+        <p>{{ form.home.label }}</p>
+        <p>{{ form.home.errors }}</p>
+        <p>{{ form.home }}</p>
+
+        <p>{{ form.founded.label }}</p>
+        <p>{{ form.founded.errors }}</p>
+        <p>{{ form.founded }}</p>
+
+        <p>{{ form.level.label }}</p>
+        <p>{{ form.level.errors }}</p>
+        <p>{{ form.level }}</p>
+
+        <p>{{ form.website.label }}</p>
+        <p>{{ form.website.help_text }}</p>
+        <p>{{ form.webiste.errors }}</p>
+        <p>{{ form.website }}</p>
+
+        <input type="submit" value="spara">
+    </form>
+{% endblock content %}
