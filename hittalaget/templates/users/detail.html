@@ -23,9 +23,20 @@
       {% endfor %}
     </ul>
   {% else %}
-    <i>{{ object }} har inga profiler.</i>
+    <i>{{ object }} har inga spelarprofiler.</i>
   {% endif %}
 
+    <!-- Render teams here -->
+    <h2>Lag</h2>
+    {% if object.teams %}
+      <ul>
+      {% for team in object.teams.all %}
+        <li><a href="{% url 'team:detail' sport=team.sport team_id=team.team_id slug=team.slug %}">{{ team.name }}</a></li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p>{{ object }} är inte moderator för något lag.</p>
+    {% endif %}
 
 
   {% if request.user == object %}
