@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}detail{% endblock title %}
+{% block content %}
+    <h1>{{ object.title }} <span style="background:aquamarine; color: white; padding: 2px 6px; border-radius: 4px;">{{ object.sport }}</span></h1>
+    <i>annons skapad av av <a href="{% url 'team:detail' object.team.sport object.team.team_id object.team.slug %}">{{ object.team }}</a></a></i>
+    <hr>
+    <p>{{ object.description }}</p>
+    <hr>
+    <p>Spelaren ska ha de följande egenskaper:</p>
+    <ul>
+        <li><strong>Positioner</strong>: {{ object.positions }}</li>
+        <li><strong>Erfarenhet av</strong>: {{ object.min_experience }}</li>
+        <li><strong>Spetsegenskap</strong>: {{ object.special_ability }}</li>
+    </ul>
+
+    {% if object.team.user == user %}
+        <a href="{% url 'ad:delete' sport=object.sport ad_id=object.ad_id slug=object.slug  %}">ta bort annonsen</a>  
+    {% else %}
+        <form method="post" action="{% url 'conversation:ad_create_conversation' ad_id=object.ad_id %}">
+            {% csrf_token %}
+            <p>{{ form.content }}</p>
+            <input type="submit" value="kontakta">
+        </form>
+    {% endif %}
+{% endblock content %}

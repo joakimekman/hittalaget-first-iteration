@@ -1,0 +1,17 @@
+<h1>{{ object.ad.title }}</h1>
+<hr>
+
+{% for message in object.messages.all %}
+    {% if message.author == object.ad.team.user %}
+        <p><strong>{{ object.ad.team }}:</strong> {{ message.content }}</p>
+    {% else %}
+        <p><strong>{{ message.author }}:</strong> {{ message.content }}</p>
+    {% endif %}
+{% endfor %}
+
+
+<form method="post" action="{% url 'conversation:ad_create_message' conversation_id=object.conversation_id %}">
+    {% csrf_token %}
+    <p>{{ form.content }}</p>
+    <input type="submit" value="sänd">
+</form>

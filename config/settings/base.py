@@ -33,6 +33,8 @@ LOCAL_APPS = [
     'hittalaget.users.apps.UsersConfig',
     'hittalaget.players.apps.PlayersConfig',
     'hittalaget.teams.apps.TeamsConfig',
+    'hittalaget.ads.apps.AdsConfig',
+    'hittalaget.conversations.apps.ConversationsConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

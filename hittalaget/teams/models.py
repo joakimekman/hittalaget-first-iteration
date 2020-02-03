@@ -47,6 +47,9 @@ class Team(models.Model):
     def get_absolute_url(self):
         return reverse("team:detail", kwargs={"sport": self.sport, "team_id": self.team_id, "slug": self.slug})
 
+    def __str__(self):
+        return self.name
+
 def pre_save_six_digit_team_id(sender, instance, **kwargs):
     '''
     Each Football team will have a 6 digit team_id that will be used in

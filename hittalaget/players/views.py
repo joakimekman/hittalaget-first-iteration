@@ -18,6 +18,19 @@ from .forms import FootballPlayerForm, FootballHistoryForm
 from .models import FootballPlayer, FootballHistory
 
 
+
+'''
+Next iteration:
+- Go through each view make sure they do dispatch/get_object properly
+- Go through each view make sure they meet standard..
+- list view.. filter (availabe, not available, all)
+- Do not include sport in the form....
+- Figure out whether to do like teams, with models..
+- consequences of deleting a player when it comes to conversations (ad) etc..
+'''
+
+
+
 #   ---------------------------------------   #
 #   ~~~~~~~~~~~~~~   MIXINS   ~~~~~~~~~~~~~   #            
 #   ---------------------------------------   #

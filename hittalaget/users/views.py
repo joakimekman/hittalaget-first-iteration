@@ -15,8 +15,23 @@ from django.views.generic import (
     UpdateView,
 )
 from .forms import CreateUserForm, UpdateUserForm
+from hittalaget.conversations.forms import PmMessageForm
 
 User = get_user_model()
+
+
+'''
+Next iteration:
+- Make sure dispatch/get_object are done correctly
+- go over every view to make sure it meet the standard
+- when no teams -- show same message as players when there are no player
+- change password -- create your own view instead of using admin
+- add the default image... and add it to the profile..
+- use mixins?
+- divide mixins and views "graphically" like other views..
+- perhaps add age as visable for birthday..
+- think about how to incorporate height..
+'''
 
 
 class UserCreateView(CreateView):
@@ -65,6 +80,7 @@ class UserDetailView(DetailView):
             if hasattr(user, profile):
                 user_profiles.append(getattr(user, profile))
         context['profiles'] = user_profiles
+        context['form'] = PmMessageForm
         return context
 
     def get_object(self, queryset=None):

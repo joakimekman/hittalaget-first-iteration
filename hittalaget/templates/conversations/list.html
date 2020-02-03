@@ -1,0 +1,32 @@
+<h1>Mina konversationer</h1>
+
+<h2>PM</h2>
+<ul>
+    {% for conversation in object_list %}
+        {% for participant in conversation.users_arr %}
+            {% if not participant == user.username  %}
+                <li><a href="{% url 'conversation:pm_detail' username=participant %}">{{ participant }}</a> <label style="background:lightgreen; padding: 1px 4px; color:white; border-radius:4px;">{{ conversation.tag }}</label> <a href="{% url 'conversation:pm_delete' username=participant %}"><span style="background:tomato; color:white; padding: 1px 4px; border-radius:4px;">ta bort</span></a></li>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</ul>
+
+<h2>AD</h2>
+
+<ul>
+{% for conversation in ad_conversations %}
+    {% for participant in conversation.users_arr %}
+        {% if not participant == user.username %}
+            {% if participant == conversation.ad.team.user.username %}
+                <li><a href="{% url 'conversation:ad_detail' conversation_id=conversation.conversation_id %}">{{ conversation.ad.team }}</a><label style="background:lightgreen; padding: 1px 4px; color:white; border-radius:4px;">{{ conversation.tag }}</label> <a href="{% url 'conversation:ad_delete' conversation_id=conversation.conversation_id %}"><span style="background:tomato; color:white; padding: 1px 4px; border-radius:4px;">ta bort</span></a></li>
+            {% else %}
+                <li><a href="{% url 'conversation:ad_detail' conversation_id=conversation.conversation_id %}">{{ participant }}</a><label style="background:lightgreen; padding: 1px 4px; color:white; border-radius:4px;">{{ conversation.tag }}</label> <a href="{% url 'conversation:ad_delete' conversation_id=conversation.conversation_id %}"><span style="background:tomato; color:white; padding: 1px 4px; border-radius:4px;">ta bort</span></a></li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+</ul>
+
+
+
+

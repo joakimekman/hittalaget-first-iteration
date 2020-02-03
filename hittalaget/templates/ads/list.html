@@ -1,0 +1,5 @@
+<h1>Annonser <span style="background:aquamarine; color: white; padding: 2px 6px; border-radius: 4px;">{{ view.kwargs.sport }}</span></h1>
+<hr>
+{% for object in object_list %}
+    <p><a href="{% url 'ad:detail' object.sport object.ad_id object.slug%}">{{ object.title }}</a></p>
+{% endfor %}

@@ -26,19 +26,19 @@
     <i>{{ object }} har inga spelarprofiler.</i>
   {% endif %}
 
-    <!-- Render teams here -->
-    <h2>Lag</h2>
-    {% if object.teams %}
-      <ul>
+  <!-- Render teams here -->
+  <h2>Lag</h2>
+  {% if object.teams %}
+    <ul>
       {% for team in object.teams.all %}
         <li><a href="{% url 'team:detail' sport=team.sport team_id=team.team_id slug=team.slug %}">{{ team.name }}</a></li>
       {% endfor %}
-      </ul>
-    {% else %}
-      <p>{{ object }} är inte moderator för något lag.</p>
-    {% endif %}
+    </ul>
+  {% else %}
+    <p>{{ object }} är inte moderator för något lag.</p>
+  {% endif %}
 
-
+  
   {% if request.user == object %}
     <hr>
     <ul>
@@ -46,5 +46,11 @@
       <li><a href="{% url 'user:update_account' %}">inställningar</a></li>
       <li><a href="{% url 'user:delete_account' %}">ta bort konto</a></li>
     </ul>
+  {% else %}
+    <form method="post" action="{% url 'conversation:pm_create_message' username=object.username %}">
+      {% csrf_token %}
+      <p>{{ form.content }}</p>
+      <input type="submit" value="skicka meddelande"> 
+    </form>
   {% endif %}
 {% endblock content %}

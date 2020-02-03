@@ -1,0 +1,11 @@
+<h1>Konversation med {{ view.kwargs.username }}</h1>
+
+{% for message in object.messages.all %}
+    <p><strong>{{ message.author.username }}:</strong> {{ message.content }}</p>
+{% endfor %}
+
+<form method="post" action="{% url 'conversation:pm_create_message' username=view.kwargs.username %}">
+    {% csrf_token %}
+    <p>{{ form.content }}</p>
+    <input type="submit" value="skicka meddelande"> 
+</form>

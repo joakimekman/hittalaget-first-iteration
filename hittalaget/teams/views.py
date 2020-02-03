@@ -14,6 +14,15 @@ from .forms import TeamForm, TeamCreateForm
 from .models import Team
 
 
+'''
+Next iteration:
+- Go through each view make sure they do dispatch/get_object properly
+- Go through each view make sure they meet standard..
+- list view.. filter (seeking, not seeking, all)
+- consequences of deleting a team when it comes to conversations (ad) etc..
+'''
+
+
 #   ---------------------------------------   #
 #   ~~~~~~~~~~~~~~   MIXINS   ~~~~~~~~~~~~~   #            
 #   ---------------------------------------   #

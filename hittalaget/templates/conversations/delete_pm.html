@@ -1,0 +1,6 @@
+<p>Är du säker på att du vill ta bort konversationen med {{ view.kwargs.username }}?</p>
+<form method="POST">
+   {% csrf_token %}
+   <input type="submit" value="Ja">
+</form>
+
